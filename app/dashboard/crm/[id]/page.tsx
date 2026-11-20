@@ -4,7 +4,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { Badge } from "@/components/ui/badge";
 import { StatusEditor } from "./status-editor";
 import { NotesEditor } from "./notes-editor";
-import { ContactLogger } from "./contact-logger";
+import { OpenConversationButton } from "./open-conversation-button";
 import { PLATFORM_LABELS } from "@/lib/creator-status";
 import type { Creator, CreatorStatus, Conversation, Message, Platform } from "@/lib/types/database";
 
@@ -45,9 +45,14 @@ export default async function CreatorDetailPage({ params }: { params: Promise<{ 
             {creator.source === "inbound" ? "Candidature entrante" : "Prospection"}
           </Badge>
           <StatusEditor creatorId={creator.id} initialStatus={creator.status as CreatorStatus} />
-          <span className="ml-auto text-xs text-muted-foreground">
-            Ajouté le {new Date(creator.created_at).toLocaleDateString("fr-FR")}
-          </span>
+          <div className="ml-auto flex items-center gap-3">
+            <span className="text-xs text-muted-foreground">Ajouté le {new Date(creator.created_at).toLocaleDateString("fr-FR")}</span>
+            <OpenConversationButton
+              creatorId={creator.id}
+              platform={creator.platform as Platform}
+              existingConversationId={conversation?.id ?? null}
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -96,8 +101,6 @@ export default async function CreatorDetailPage({ params }: { params: Promise<{ 
             ))}
           </div>
         </div>
-
-        <ContactLogger creatorId={creator.id} platform={creator.platform as Platform} conversationId={conversation?.id ?? null} />
       </main>
     </>
   );

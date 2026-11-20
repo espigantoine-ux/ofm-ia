@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Instagram, Music2, Twitter, Globe, Users, CalendarClock, FileText } from "lucide-react";
+import { LayoutDashboard, Instagram, Music2, Twitter, Globe, Users, CalendarClock, FileText, MessageCircle, Settings } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/dashboard/conversations", label: "Conversations", icon: MessageCircle },
   { href: "/dashboard/platforms/instagram", label: "Instagram", icon: Instagram },
   { href: "/dashboard/platforms/tiktok", label: "TikTok", icon: Music2 },
   { href: "/dashboard/platforms/x", label: "X / Twitter", icon: Twitter },
@@ -13,6 +14,7 @@ const NAV_ITEMS = [
   { href: "/dashboard/crm", label: "CRM", icon: Users },
   { href: "/dashboard/appointments", label: "Rendez-vous", icon: CalendarClock },
   { href: "/dashboard/applications", label: "Candidatures", icon: FileText },
+  { href: "/dashboard/settings", label: "Paramètres", icon: Settings },
 ];
 
 export function Sidebar({ userEmail }: { userEmail?: string | null }) {
