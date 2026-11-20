@@ -1,0 +1,195 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-foreground: var(--foreground);
+  --color-disabled: var(--disabled);
+  --font-body: var(--font-instrument-sans);
+  --font-display: var(--font-instrument-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-accent: var(--font-geist-mono);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+}
+
+/* Palette "OFM AI" — noir profond + bleu électrique/cyan. Thème clair
+   défini pour complétude mais le produit charge .dark par défaut (voir
+   app/layout.tsx), cohérent avec le brief ("interface sombre, noir
+   profond, bleu électrique, cyan lumineux"). */
+:root {
+  --background: #f5f7fa;
+  --background-secondary: #e9edf3;
+  --card: #ffffff;
+  --card-foreground: #0a0e17;
+  --popover: #ffffff;
+  --popover-foreground: #0a0e17;
+  --foreground: #0a0e17;
+  --muted: #e9edf3;
+  --muted-foreground: #596679;
+  --disabled: #a3adbd;
+  --border: #dbe1ea;
+  --input: #e9edf3;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-dark: #1e40af;
+  --primary-foreground: #ffffff;
+
+  --secondary: #e9edf3;
+  --secondary-foreground: #0a0e17;
+  --accent: #e9edf3;
+  --accent-foreground: #0a0e17;
+  --ring: #2563eb;
+
+  --success: #16a34a;
+  --warning: #c98a1a;
+  --destructive: #d8475a;
+  --info: #06b6d4;
+
+  --chart-1: #2563eb;
+  --chart-2: #06b6d4;
+  --chart-3: #c98a1a;
+  --chart-4: #d8475a;
+  --chart-5: #596679;
+  --radius: 14px;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0a0e17;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e9edf3;
+  --sidebar-accent-foreground: #0a0e17;
+  --sidebar-border: #dbe1ea;
+  --sidebar-ring: #2563eb;
+}
+
+.dark {
+  --background: #04070d;
+  --background-secondary: #0a0f1a;
+  --card: #0a0f1a;
+  --card-foreground: #eef2f8;
+  --popover: #0a0f1a;
+  --popover-foreground: #eef2f8;
+  --foreground: #eef2f8;
+  --muted: #101827;
+  --muted-foreground: #8a96ab;
+  --disabled: #39455c;
+  --border: #19233a;
+  --input: #101827;
+
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-dark: #2563eb;
+  --primary-foreground: #04070d;
+
+  --secondary: #0a0f1a;
+  --secondary-foreground: #eef2f8;
+  --accent: #0a0f1a;
+  --accent-foreground: #eef2f8;
+  --ring: #22d3ee;
+
+  --success: #22c55e;
+  --warning: #e2b24a;
+  --destructive: #f87171;
+  --info: #22d3ee;
+
+  --chart-1: #3b82f6;
+  --chart-2: #22d3ee;
+  --chart-3: #e2b24a;
+  --chart-4: #f87171;
+  --chart-5: #8a96ab;
+  --radius: 14px;
+
+  --sidebar: #0a0f1a;
+  --sidebar-foreground: #eef2f8;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #04070d;
+  --sidebar-accent: #101827;
+  --sidebar-accent-foreground: #eef2f8;
+  --sidebar-border: #19233a;
+  --sidebar-ring: #22d3ee;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-balance tracking-tight font-display font-bold;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--primary), transparent 70%);
+  }
+}
+
+@layer utilities {
+  .card-hover {
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  }
+  .card-hover:hover {
+    border-color: color-mix(in oklch, var(--primary), transparent 55%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.5);
+  }
+
+  .glow-border-hover {
+    border-color: color-mix(in oklch, var(--primary), transparent 55%);
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--primary), transparent 80%),
+      0 0 20px -8px rgba(34, 211, 238, 0.25);
+    transition: border-color 220ms ease, box-shadow 220ms ease;
+  }
+  .glow-border-hover:hover {
+    border-color: color-mix(in oklch, var(--primary), transparent 25%);
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--primary), transparent 50%),
+      0 14px 32px -10px rgba(34, 211, 238, 0.4);
+  }
+}
