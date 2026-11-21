@@ -1,4 +1,5 @@
-import { Bell, HelpCircle } from "lucide-react";
+import { HelpCircle } from "lucide-react";
+import { NotificationBell } from "@/components/notifications/notification-bell";
 
 export function Topbar({
   title,
@@ -19,9 +20,7 @@ export function Topbar({
       </div>
       <div className="flex items-center gap-3">
         {action}
-        <button className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground" aria-label="Notifications">
-          <Bell className="h-4 w-4" />
-        </button>
+        <NotificationBell />
         <button className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground" aria-label="Aide">
           <HelpCircle className="h-4 w-4" />
         </button>

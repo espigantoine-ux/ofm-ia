@@ -78,6 +78,12 @@ export function MessageItem({ message }: { message: Message }) {
         <p className="mt-1 text-[10px] text-muted-foreground">
           {SENDER_LABEL[message.sender]} · {STATUS_LABEL[message.status]} · {new Date(message.created_at).toLocaleString("fr-FR")}
         </p>
+        {message.intent && (
+          <p className="mt-1 text-[10px] font-medium text-primary">
+            Intention détectée : {message.intent}
+            {message.is_refusal && <span className="text-destructive"> · refus détecté</span>}
+          </p>
+        )}
       </div>
 
       {error && <p className="text-xs text-destructive">{error}</p>}

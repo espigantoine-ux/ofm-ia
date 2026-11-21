@@ -71,12 +71,30 @@ export async function POST(request: Request) {
       sender: "ai_draft",
       content: result.draft,
       status: "pending_review",
+      intent: result.intent,
+      is_refusal: result.isRefusal,
     })
     .select()
     .single();
 
   if (error || !inserted) {
     return NextResponse.json({ error: "Impossible d'enregistrer la proposition." }, { status: 500 });
+  }
+
+  // Cas que seul le modèle peut détecter (pas déductible par un trigger
+  // SQL comme les autres notifications, voir migration 0003) : signale
+  // explicitement qu'une intervention humaine est nécessaire.
+  if (result.isRefusal) {
+    const { data: staffRows } = await supabase.from("staff_profiles").select("id");
+    if (staffRows && staffRows.length > 0) {
+      await supabase.from("notifications").insert(
+        staffRows.map((s) => ({
+          recipient_id: s.id,
+          type: "intervention_requise",
+          payload: { conversation_id: conversation.id, message_id: inserted.id, reason: "refus_detecte" },
+        }))
+      );
+    }
   }
 
   return NextResponse.json({

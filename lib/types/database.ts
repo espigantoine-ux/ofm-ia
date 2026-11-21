@@ -81,6 +81,10 @@ export interface Message {
   created_by: string | null;
   created_at: string;
   sent_at: string | null;
+  // Analyse IA persistée (migration 0003) — null pour les messages
+  // sender='creator'/'agent', toujours renseigné pour sender='ai_draft'.
+  intent: string | null;
+  is_refusal: boolean;
 }
 
 export type AppointmentStatus = "proposee" | "confirmee" | "annulee";
